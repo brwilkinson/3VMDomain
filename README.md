@@ -1,6 +1,6 @@
 # 3VMDomain
 
-<a href="http://armviz.io/#/?load=https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-subnet-add-vnet-existing/azuredeploy.json" target="_blank">
+<a href="http://armviz.io/#/?load=https://raw.githubusercontent.com/brwilkinson/3VMDomain-VS/master/3VMDomain/Templates/azuredeploy.json" target="_blank">
   <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
