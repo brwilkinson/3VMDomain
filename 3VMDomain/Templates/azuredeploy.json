@@ -634,7 +634,7 @@
           },
           "DNSServers": {
             "value": [
-              "[variables('DC1PrivateIPAddress')]".
+              "[variables('DC1PrivateIPAddress')]",
               "[variables('DC1PrivateIPAddress')]"
             ]
           }
