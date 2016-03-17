@@ -15,3 +15,9 @@ Then choose the DomainName.
   <img src="./3vmdeployment.png" width="350"/>
   <img src="./3vmdeployment_params.png" width="350"/>
 </p>
+
+This will deploy:
+
+# DC1
+# DC2
+# MS1
