@@ -18,12 +18,10 @@ Then choose the DomainName.
 
 This will deploy:
 
-### DC1
-### DC2
-### MS1
+##### DC1, DC2 & MS1
 
 There are currently two documents that are linked to for this deployment
-#### This is a second template just to set the DNS on the vNet
+##### This is a second template just to set the DNS on the vNet
 "dpSetvNetDNS": "https://raw.githubusercontent.com/brwilkinson/Azure/master/dpSetvNetDNS.json"
-#### This is the configuration data
+##### This is the configuration data
 "ConfigData": "https://raw.githubusercontent.com/brwilkinson/Azure/master/ConfigData.psd1"
