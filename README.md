@@ -23,5 +23,5 @@ This will deploy:
 There are currently two documents that are linked to for this deployment
 ##### This is a second template just to set the DNS on the vNet
 "dpSetvNetDNS": "https://raw.githubusercontent.com/brwilkinson/Azure/master/dpSetvNetDNS.json"
-##### This is the configuration data
+##### This is the configuration data for the DSC Configuration
 "ConfigData": "https://raw.githubusercontent.com/brwilkinson/Azure/master/ConfigData.psd1"
