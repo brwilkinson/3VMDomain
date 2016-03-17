@@ -19,5 +19,5 @@ Then choose the DomainName.
 This will deploy:
 
 ### DC1
-## DC2
-# MS1
+### DC2
+### MS1
