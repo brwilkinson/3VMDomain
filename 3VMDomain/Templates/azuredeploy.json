@@ -3,7 +3,6 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
 
-    // Global
     "DeploymentID": {
       "type": "string",
       "defaultValue": "101",
@@ -29,13 +28,13 @@
         "Premium_LRS"
       ]
     },
-    // Used for all VM's
+
     "vmAdminUserName": {
       "type": "string",
       "defaultValue": "BRW",
       "minLength": 1
     },
-    // Used for all VM's
+
     "vmAdminPassword": {
       "type": "securestring"
     },
@@ -73,15 +72,15 @@
     }
   },
   "variables": {
-    // Global
+
     "Deployment": "[concat(parameters('Environment'),parameters('DeploymentID'))]",
-    //"rgName": "[concat('rg', variables('Deployment'))]",
+
     "saName": "[toLower(concat('sa', variables('Deployment')))]",
 
-    // SubDeployments
+
     "dpSetvNetDNS": "https://raw.githubusercontent.com/brwilkinson/Azure/master/dpSetvNetDNS.json",
 
-    // Network
+
     "snPrefix": "10.0.0.0/16",
     "snName01": "[concat('sn', variables('Deployment'),'-01')]",
     "snName01Prefix": "10.0.0.0/24",
@@ -91,14 +90,14 @@
     "VnetID": "[resourceId('Microsoft.Network/virtualNetworks', concat('vn',Variables('Deployment')))]",
     "SubnetRef": "[concat(variables('VnetID'), '/subnets/', variables('snName01'))]",
 
-    // VM Global
+
     "vmSize": "Standard_D1",
     "vmImagePublisher": "MicrosoftWindowsServer",
     "vmImageOffer": "WindowsServer",
     "vmStorageContainerName": "vhds",
     "ConfigData": "https://raw.githubusercontent.com/brwilkinson/Azure/master/ConfigData.psd1",
 
-    // DC1
+
     "DC1vmName": "[concat('vm', variables('Deployment'),'DC1')]",
     "DC1vmOSDiskName": "[concat(variables('DC1vmName'),'_vmOSDisk')]",
     "DC1vmDataDiskName": "[concat(variables('DC1vmName'),'_vmDataDisk')]",
@@ -108,7 +107,7 @@
     "DC1PrivateIPAddress": "10.0.0.10",
     "DC1DSCConfFunction": "vmdscDC1Configuration.ps1\\Main",
 
-    // DC2
+
     "DC2vmName": "[concat('vm', variables('Deployment'),'DC2')]",
     "DC2vmOSDiskName": "[concat(variables('DC2vmName'),'_vmOSDisk')]",
     "DC2vmDataDiskName": "[concat(variables('DC2vmName'),'_vmDataDisk')]",
@@ -118,7 +117,7 @@
     "DC2PrivateIPAddress": "10.0.0.11",
     "DC2DSCConfFunction": "vmdscDC2Configuration.ps1\\Main",
 
-    // MS1
+
     "MS1vmName": "[concat('vm', variables('Deployment'),'MS1')]",
     "MS1vmOSDiskName": "[concat(variables('MS1vmName'),'_vmOSDisk')]",
     "MS1vmDataDiskName": "[concat(variables('MS1vmName'),'_vmDataDisk')]",
@@ -147,7 +146,6 @@
         "dhcpOptions": {
           "dnsServers": [
             "[variables('DC1PrivateIPAddress')]",
-            //"[variables('DC2PrivateIPAddress')]",
             "8.8.8.8"
           ]
         },
@@ -180,7 +178,7 @@
         "accountType": "[parameters('vmStorageAccountType')]"
       }
     },
-    // DC1 NIC
+    
     {
       "name": "[variables('DC1vmNicName')]",
       "type": "Microsoft.Network/networkInterfaces",
@@ -210,7 +208,7 @@
         ]
       }
     },
-    // DC2 NIC
+    
     {
       "name": "[variables('DC2vmNicName')]",
       "type": "Microsoft.Network/networkInterfaces",
@@ -240,7 +238,7 @@
         ]
       }
     },
-    // MS1 NIC
+    
     {
       "name": "[Variables('MS1vmNicName')]",
       "type": "Microsoft.Network/networkInterfaces",
@@ -269,7 +267,7 @@
         ]
       }
     },
-    // DC1 VM
+    
     {
       "name": "[variables('DC1vmName')]",
       "type": "Microsoft.Compute/virtualMachines",
@@ -369,7 +367,7 @@
         }
       ]
     },
-    // DC2 VM
+    
     {
       "name": "[variables('DC2vmName')]",
       "type": "Microsoft.Compute/virtualMachines",
@@ -466,7 +464,7 @@
         }
       ]
     },
-    // MS1 VM
+    
     {
       "name": "[variables('MS1vmName')]",
       "type": "Microsoft.Compute/virtualMachines",
@@ -563,7 +561,7 @@
         }
       ]
     },
-    // DC1 Public IP
+    
     {
       "name": "[variables('DC1PublicIPName')]",
       "type": "Microsoft.Network/publicIPAddresses",
@@ -580,7 +578,7 @@
         }
       }
     },
-    // DC2 Public IP
+    
     {
       "name": "[variables('DC2PublicIPName')]",
       "type": "Microsoft.Network/publicIPAddresses",
@@ -597,7 +595,7 @@
         }
       }
     },
-    // MS1 Public IP
+    
     {
       "name": "[variables('MS1PublicIPName')]",
       "type": "Microsoft.Network/publicIPAddresses",
@@ -614,7 +612,7 @@
         }
       }
     },
-    // Remove the Public DNS from the Subnet, set only DC1
+    
     {
       "name": "dpRemovePublicDNS",
       "type": "Microsoft.Resources/deployments",
@@ -641,7 +639,7 @@
         }
       }
     },
-    // Add DC2 in as DNS Server
+    
     {
       "name": "dpAddDC2DNSServer",
       "type": "Microsoft.Resources/deployments",
