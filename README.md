@@ -1,4 +1,10 @@
 # 3VMDomain
+
+<a href="http://armviz.io/#/?load=https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-subnet-add-vnet-existing/azuredeploy.json" target="_blank">
+  <img src="http://armviz.io/visualizebutton.png"/>
+</a>
+
+
 Create a domain with 2 DC's and 1 Member Server using an Azure RM Template
 
 This is the visual studio AzureRM Template project.
