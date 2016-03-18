@@ -46,7 +46,7 @@ Node $AllNodes.Where({$_.NodeName -eq 'MS1'}).NodeName
 		Contents        = $Node.NodeName
 		DependsOn       = '[xDisk]FDrive'
 	}
-
+     <#
 	WaitForAny DC1
 	{
 		NodeName     = '10.0.0.10'
@@ -62,6 +62,6 @@ Node $AllNodes.Where({$_.NodeName -eq 'MS1'}).NodeName
 		DomainName = $DomainName
 		Credential = $DomainCreds
 	}
-
+     #>
 }
 }#Main
