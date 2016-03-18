@@ -1,8 +1,5 @@
 # 3VMDomain
 
-<a href="http://armviz.io/#/?load=https://github.com/brwilkinson/3VMDomain-VS/blob/brwilkinson-dev1/3VMDomain/Templates/azuredeploy.json" target="_blank">
-  <img src="http://armviz.io/visualizebutton.png"/>
-</a>
 
 
 Create a domain with 2 DC's and 1 Member Server using an Azure RM Template
