@@ -10,6 +10,7 @@ Param (
 Import-DscResource -ModuleName PSDesiredStateConfiguration
 Import-DscResource -ModuleName xActiveDirectory
 Import-DscResource -ModuleName xStorage
+Import-DscResource -ModuleName xPendingReboot
 
 Node $AllNodes.Where({$_.NodeName -eq 'DC2'}).NodeName
 {
@@ -18,7 +19,7 @@ Node $AllNodes.Where({$_.NodeName -eq 'DC2'}).NodeName
 	LocalConfigurationManager
     {
         ActionAfterReboot   = 'ContinueConfiguration'
-        ConfigurationMode   = 'ApplyOnly'
+        ConfigurationMode   = 'ApplyAndAutoCorrect'
         RebootNodeIfNeeded  = $true
         AllowModuleOverWrite = $true
     }
@@ -42,17 +43,36 @@ Node $AllNodes.Where({$_.NodeName -eq 'DC2'}).NodeName
 		DependsOn       = '[xDisk]FDrive'
 	}
 
+    xPendingReboot RebootForFreshDNS
+    {
+        Name      = 'RebootForFreshDNS'
+        DependsOn = '[File]TestFile'
+    }
+
+	Script RebootForFreshDNS
+    {
+        DependsOn = '[xPendingReboot]RebootForFreshDNS'
+        GetScript = {Get-DnsClientServerAddress -AddressFamily IPv4 -InterfaceAlias Ethernet |
+                        Select ServerAddresses   
+                     }
+        SetScript = {$global:DSCMachineStatus = 1}
+        TestScript = {Get-DnsClientServerAddress -AddressFamily IPv4 -InterfaceAlias Ethernet |
+                       foreach {! ($_.ServerAddresses -contains '8.8.8.8')}}
+    }
+
 	WaitForAny DC1
 	{
-		NodeName     = '10.0.0.10'
+		NodeName     = ('DC1.' + $DomainName)
 		ResourceName = '[xWaitForADDomain]DC1Forest'
 		RetryCount   = $RetryCount
 		RetryIntervalSec = $RetryIntervalSec
+        DependsOn = '[Script]RebootForFreshDNS'
+        PsDscRunAsCredential = $AdminCreds
 	}
 
 	xADDomainController DC2
 	{
-		DependsOn    = '[WaitForAny]DC1','[WindowsFeature]InstallADDS'
+		DependsOn    = '[WindowsFeature]InstallADDS','[WaitForAny]DC1'
 		DomainName   = $DomainName
 		DatabasePath = 'F:\NTDS'
         LogPath      = 'F:\NTDS'

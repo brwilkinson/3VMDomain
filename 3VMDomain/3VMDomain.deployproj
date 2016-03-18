@@ -90,6 +90,9 @@
     <None Include="DSC\xDSCUtils\0.1\Tests\xDscUtils.Tests.ps1" />
     <None Include="DSC\xDSCUtils\0.1\xDSCUtils.psd1" />
     <None Include="DSC\xDSCUtils\0.1\xDSCUtils.psm1" />
+    <None Include="DSC\xPendingReboot\DSCResources\MSFT_xPendingReboot\MSFT_xPendingReboot.psm1" />
+    <None Include="DSC\xPendingReboot\DSCResources\MSFT_xPendingReboot\MSFT_xPendingReboot.schema.mof" />
+    <None Include="DSC\xPendingReboot\xPendingReboot.psd1" />
     <None Include="DSC\xStorage\2.4.0.0\appveyor.yml" />
     <None Include="DSC\xStorage\2.4.0.0\DSCResources\MSFT_xDisk\MSFT_xDisk.psm1" />
     <None Include="DSC\xStorage\2.4.0.0\DSCResources\MSFT_xDisk\MSFT_xDisk.schema.mof" />

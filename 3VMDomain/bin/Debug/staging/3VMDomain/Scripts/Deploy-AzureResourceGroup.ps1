@@ -117,3 +117,5 @@ if (Test-Path -Path $RDPFileDirectory)
 		Get-AzureRmRemoteDesktopFile -LocalPath ($RDPFileDirectory + '/' + $_.Name + '.RDP') -ResourceGroupName $ResourceGroupName -Name $_.Name
 	}
 }
+
+Remove-Item -Path $ArtifactStagingDirectory

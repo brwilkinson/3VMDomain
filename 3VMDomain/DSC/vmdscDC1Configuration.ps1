@@ -20,7 +20,7 @@ Node $AllNodes.Where({$_.NodeName -eq 'DC1'}).NodeName
 	LocalConfigurationManager
     {
         ActionAfterReboot   = 'ContinueConfiguration'
-        ConfigurationMode   = 'ApplyOnly'
+        ConfigurationMode   = 'ApplyAndAutoCorrect'
         RebootNodeIfNeeded  = $true
         AllowModuleOverWrite = $true
     }
