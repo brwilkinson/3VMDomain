@@ -4,7 +4,7 @@
 
 Create a domain with 2 DC's and 1 Member Server using an Azure RM Template
 
-This is the visual studio AzureRM Template project.
+This is the visual studio AzureRM Template project. Download the zip, add it to visual studio, then Deploy from there.
 
 When you Deploy, I would simply recommend selecing a unique deployment# that matches the Resource Group Name.
 
