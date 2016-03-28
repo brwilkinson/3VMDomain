@@ -14,8 +14,8 @@ Then choose your Admin user. You will be prompted for the Password.
 Then choose the DomainName.
 
 <p align="center">
-  <img src="./images/3vmdeployment.png" width="350"/>
-  <img src="./images/3vmdeployment_params.png" width="350"/>
+  <img src="./Images/3vmdeployment.png" width="350"/>
+  <img src="./Images/3vmdeployment_params.png" width="350"/>
 </p>
 
 This will deploy:
