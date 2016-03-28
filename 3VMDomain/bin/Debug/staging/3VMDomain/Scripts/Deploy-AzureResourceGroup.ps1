@@ -17,6 +17,8 @@ Param(
 	[string] $RDPFileDirectory = "$home\OneDrive\RDP\Azure"
 )
 
+Get-Date -OutVariable Start
+
 Import-Module Azure -ErrorAction SilentlyContinue
 
 try {
@@ -91,7 +93,7 @@ if ($UploadArtifacts) {
 			Container  = $StorageContainerName 
 			Context    = $StorageAccountContext 
 			Permission = 'r'
-			ExpiryTime = (Get-Date).AddHours(5) 
+			ExpiryTime = (Get-Date).AddHours(12)
 			StartTime  = (Get-Date).AddHours(-4) # allow for different timezones and offsets
 			}
 		$ArtifactsLocationSasToken = New-AzureStorageContainerSASToken @StorageTokenParams
@@ -118,4 +120,4 @@ if (Test-Path -Path $RDPFileDirectory)
 	}
 }
 
-Remove-Item -Path $ArtifactStagingDirectory
+New-TimeSpan -Start $Start[0] -End (Get-Date) | Select TotalHours,TotalMinutes,TotalSeconds
