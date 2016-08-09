@@ -633,7 +633,7 @@
           "DNSServers": {
             "value": [
               "[variables('DC1PrivateIPAddress')]",
-              "[variables('DC2PrivateIPAddress')]"
+              "10.0.0.50"
             ]
           }
         }
